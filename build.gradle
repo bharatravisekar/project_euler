@@ -1,0 +1,37 @@
+apply plugin: 'application'
+apply plugin: 'idea'
+apply plugin: 'scala'
+
+ext {
+  _applicationName = 'ProjectEuler'
+  _applicationVersion = 0.1
+  _scalaVersion = '2.10'
+  _scalaPatchVersion = _scalaVersion + '.3'
+}
+
+//startScripts {
+//  applicationName = 'Problem1'
+//  mainClassName = 'com.project_euler.Problem1'
+//}
+
+repositories {
+  mavenCentral()
+}
+
+jar {
+  baseName = _applicationName
+  version = _applicationVersion
+}
+
+dependencies {
+  compile 'org.scala-lang:scala-compiler:' + _scalaPatchVersion
+  compile 'org.scala-lang:scala-library:' + _scalaPatchVersion
+}
+
+tasks.withType(ScalaCompile) {
+  // Disable Ant to use Zinc for incremental compilation
+  scalaCompileOptions.useAnt = false
+
+  // Turn on feature warnings
+  scalaCompileOptions.additionalParameters= ['-feature']
+}
