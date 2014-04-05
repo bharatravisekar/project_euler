@@ -11,7 +11,7 @@ import scala.annotation.tailrec
  */
 object Problem3 extends App {
   @tailrec private def deepDivide(n: Long, d: Long): Long =
-    if(n % d != 0)
+    if (n % d != 0)
       n
     else
       deepDivide(n/d, d)
@@ -21,7 +21,7 @@ object Problem3 extends App {
       factors.last
     else
       largestPrimeFactor(deepDivide(number, d), d + 1,
-        if(number % d == 0) factors :+ d else factors)
+        if (number % d == 0) factors :+ d else factors)
 
   println(largestPrimeFactor(600851475143L))
 }
