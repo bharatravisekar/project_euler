@@ -8,6 +8,6 @@ package com.project_euler
  * @author Bharat Ravisekar
  */
 object Problem1 extends App {
-  val result = (1 until 1000).filter(n => n % 3 == 0 || n % 5 == 0).sum
+  private val result = (1 until 1000).filter(n => n % 3 == 0 || n % 5 == 0).sum
   println(result)
 }

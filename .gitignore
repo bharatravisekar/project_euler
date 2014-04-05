@@ -30,3 +30,5 @@ out/production/project_euler/com/project_euler/Problem1.scala
 out/production/project_euler/scala/com/project_euler/Problem1.scala
 
 build/scripts/Problem1
+
+out/*
