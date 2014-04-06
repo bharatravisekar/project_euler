@@ -1,7 +1,7 @@
 package com.project_euler
 
 /**
- * Smallest multiple.
+ * Smallest positive number that is evenly divisible by all of the numbers from 1 to 20.
  *
  * https://projecteuler.net/problem=5
  *
@@ -34,7 +34,7 @@ object Problem5 extends App {
   (1L to 20L) foreach { x => updateFactorCover(primeFactors(x)) }
 
   // Evaluates the factor cover
-  val result = factorCover.foldLeft(1L) {
+  private val result = factorCover.foldLeft(1L) {
     case (product, (factor, power)) => product * Math.pow(factor, power).toLong
   }
 

@@ -1,7 +1,5 @@
 package com.project_euler
 
-import scala.annotation.tailrec
-
 /**
  * Largest prime factor of 600851475143
  *
@@ -23,6 +21,6 @@ object Problem3 extends App {
     else
       primeFactors(number, d + 1, factors)
 
-  val result = primeFactors(600851475143L).keys.toList.sorted.last
+  private val result = primeFactors(600851475143L).keys.toList.sorted.last
   println(result)
 }

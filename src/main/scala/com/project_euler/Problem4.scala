@@ -21,9 +21,9 @@ object Problem4 extends App {
 
   private def isPalindrome(number: Long): Boolean = isPalindrome(number.toString)
 
-  val products = for { i <- 999L to 100L by -1
-                       j <- i to 100L by -1 } yield i * j
+  private val products = for { i <- 999L to 100L by -1
+                               j <- i to 100L by -1 } yield i * j
 
-  val largestPalindrome = products.sortWith(_ > _).find(isPalindrome)
+  private val largestPalindrome = products.sortWith(_ > _).find(isPalindrome)
   println(largestPalindrome.get)
 }
