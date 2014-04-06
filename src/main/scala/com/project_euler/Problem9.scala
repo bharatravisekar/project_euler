@@ -26,23 +26,7 @@ object Problem9 extends App {
   }
 
   // Brute force all values of c.
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   private val pythagoreanTriplets = (3 to SUM - 3).flatMap(pythagoreanTripletForC)
-=======
-  private val pythagoreanTriplets = (3 to SUM - 3).flatMap(x => pythagoreanTripletForC(x))
->>>>>>> e5e9d9dd43c0ee4a93fa29c5a02e237a00ae07fc
-=======
-  private val pythagoreanTriplets = (3 to SUM - 3).flatMap(x => pythagoreanTripletForC(x))
->>>>>>> e5e9d9dd43c0ee4a93fa29c5a02e237a00ae07fc
-=======
-  private val pythagoreanTriplets = (3 to SUM - 3).flatMap(x => pythagoreanTripletForC(x))
->>>>>>> e5e9d9dd43c0ee4a93fa29c5a02e237a00ae07fc
-=======
-  private val pythagoreanTriplets = (3 to SUM - 3).flatMap(x => pythagoreanTripletForC(x))
->>>>>>> e5e9d9dd43c0ee4a93fa29c5a02e237a00ae07fc
 
   if(pythagoreanTriplets.isEmpty) {
     println("No pythagorean triplet found")
