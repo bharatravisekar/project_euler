@@ -10,18 +10,19 @@ import scala.annotation.tailrec
  * @author Bharat Ravisekar
  */
 object Problem3 extends App {
-  @tailrec private def deepDivide(n: Long, d: Long): Long =
-    if (n % d != 0)
-      n
-    else
-      deepDivide(n/d, d)
+  private def addAFactor(factors: Map[Long, Int], d: Long): Map[Long, Int] =
+    factors + (d -> (factors.getOrElse(d, 0) + 1))
 
-  private def largestPrimeFactor(number: Long, d: Long = 2, factors: Seq[Long] = Seq(1L)): Long =
+  private def primeFactors(number: Long, d: Long = 2, factors: Map[Long, Int] = Map.empty):
+  Map[Long, Int] =
     if (number == 1)
-      factors.last
+      factors
     else
-      largestPrimeFactor(deepDivide(number, d), d + 1,
-        if (number % d == 0) factors :+ d else factors)
+    if (number % d == 0)
+      primeFactors(number/d, d, addAFactor(factors, d))
+    else
+      primeFactors(number, d + 1, factors)
 
-  println(largestPrimeFactor(600851475143L))
+  val result = primeFactors(600851475143L).keys.toList.sorted.last
+  println(result)
 }

@@ -3,7 +3,7 @@ package com.project_euler
 import scala.annotation.tailrec
 
 /**
- * Largest palindrome product for 3
+ * Largest palindrome number formed by product for two 3-digit numbers.
  *
  * https://projecteuler.net/problem=4
  *
@@ -21,8 +21,8 @@ object Problem4 extends App {
 
   private def isPalindrome(number: Long): Boolean = isPalindrome(number.toString)
 
-  val products = for {i <- 999L to 100L by -1
-                      j <- 999L to 100L by -1} yield i * j
+  val products = for { i <- 999L to 100L by -1
+                       j <- i to 100L by -1 } yield i * j
 
   val largestPalindrome = products.sortWith(_ > _).find(isPalindrome)
   println(largestPalindrome.get)
