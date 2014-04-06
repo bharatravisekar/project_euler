@@ -3,10 +3,11 @@ package com.project_euler
 /**
  * Largest product of 5 consecutive numbers in a series.
  *
+ * https://projecteuler.net/problem=8
+ *
  * @author Bharat Ravisekar
  */
 object Problem8 extends App {
-
   private val N = 5
 
   private val x = "73167176531330624919225119674426574742355349194934"+

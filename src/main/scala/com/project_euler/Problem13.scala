@@ -118,7 +118,7 @@ object Problem13 extends App {
     var result = Seq.empty[Int]
     var carry = 0
 
-    (0 until resultSize) foreach { i =>
+    for (i <- 0 until resultSize) {
       val tempSum = (if (i < n1.size) n1(i) else 0) + (if (i < n2.size) n2(i) else 0) + carry
       result = result :+ (tempSum % 10)
       carry = tempSum / 10

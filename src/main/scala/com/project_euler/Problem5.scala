@@ -31,7 +31,9 @@ object Problem5 extends App {
       case (k, v) => factorCover.put(k, Math.max(factorCover.getOrElse(k, 0), v))
     }
 
-  (1L to 20L) foreach { x => updateFactorCover(primeFactors(x)) }
+  for (x <- 1L to 20L) {
+    updateFactorCover(primeFactors(x))
+  }
 
   // Evaluates the factor cover
   private val result = factorCover.foldLeft(1L) {

@@ -3,6 +3,8 @@ package com.project_euler
 /**
  * 10001st prime number.
  *
+ *  https://projecteuler.net/problem=7
+ *
  * @author Bharat Ravisekar
  */
 object Problem7 extends App {

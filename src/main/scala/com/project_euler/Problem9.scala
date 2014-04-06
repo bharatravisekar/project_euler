@@ -3,6 +3,8 @@ package com.project_euler
 /**
  * Special Pythagorean triplet.
  *
+ * https://projecteuler.net/problem=9
+ *
  * @author Bharat Ravisekar
  */
 object Problem9 extends App {

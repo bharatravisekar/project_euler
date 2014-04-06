@@ -21,7 +21,7 @@ object Problem14 extends App {
 
   var longestChainSize = -1
   var longestChainN = -1
-  (1 until MAX) foreach { n =>
+  for (n <- 1 until MAX) {
     val sequence = collatzSequence(n)
     if (sequence.size > longestChainSize) {
       longestChainSize = sequence.size

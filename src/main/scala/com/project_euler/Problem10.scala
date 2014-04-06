@@ -3,6 +3,8 @@ package com.project_euler
 /**
  * Summation of primes.
  *
+ * https://projecteuler.net/problem=10
+ *
  * @author Bharat Ravisekar
  */
 object Problem10 extends App {
