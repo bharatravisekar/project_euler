@@ -9,11 +9,6 @@ ext {
   _scalaPatchVersion = _scalaVersion + '.3'
 }
 
-//startScripts {
-//  applicationName = 'Problem1'
-//  mainClassName = 'com.project_euler.Problem1'
-//}
-
 repositories {
   mavenCentral()
 }
