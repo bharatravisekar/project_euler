@@ -46,27 +46,27 @@ object Problem17 extends App {
   private val MILLION = "million"
   private val BILLION = "billion"
 
-  private def extractDigits(number: Int): Seq[Int] = {
+  private def extractDigits(number: Long): Seq[Int] = {
     var n = number
     var digits = Seq.empty[Int]
     while(n != 0) {
-      digits = digits :+ (n % 10)
+      digits = digits :+ (n % 10).toInt
       n = n / 10
     }
     digits.reverse
   }
 
-  private def oneDigitsInWords(digit: Int): String = numberMap(digit)
+  private def oneDigitInWords(digit: Int): String = numberMap(digit)
 
   private def twoDigitsInWords(digits: Seq[Int]): String = {
     require(digits.size == 2, "Invalid input")
 
     if (digits.head == 0) {
-      oneDigitsInWords(digits.last)
+      oneDigitInWords(digits.last)
     } else if (digits.head == 1) {
       numberMap(digits.head * 10 + digits.last)
     } else {
-      s"${numberMap(digits.head * 10)} ${oneDigitsInWords(digits.last)}"
+      s"${numberMap(digits.head * 10)} ${oneDigitInWords(digits.last)}"
     }
   }
 
@@ -75,41 +75,51 @@ object Problem17 extends App {
     if (digits(0) == 0)
       twoDigitsInWords(digits.tail)
     else if (digits(1) == 0 && digits(2) == 0)
-      s"${oneDigitsInWords(digits.head)} $HUNDRED"
+      s"${oneDigitInWords(digits.head)} $HUNDRED"
     else
-      s"${oneDigitsInWords(digits.head)} $HUNDRED $AND ${twoDigitsInWords(digits.tail)}"
+      s"${oneDigitInWords(digits.head)} $HUNDRED $AND ${twoDigitsInWords(digits.tail)}"
   }
 
-  private def numberInWords(number: Int): String = {
-    val digits = extractDigits(number)
-    val numDigits = digits.size
-
+  private def numberInWords(n: Int): String = {
     val stringBuilder = new StringBuilder
-    if (numDigits == 10)
-      stringBuilder.append(s"${oneDigitsInWords(digits(0))} $BILLION ")
+    if (n == 0)
+      stringBuilder.append("zero")
+    else {
+      var number: Long = n
+      if (number < 0) {
+        stringBuilder.append("minus ")
+        number = -number
+      }
 
-    if (digits.size >= 9) {
-      stringBuilder.append(s"${threeDigitsInWords(digits.slice(numDigits - 9, numDigits - 6))} $MILLION ")
-    } else if (digits.size >= 8) {
-      stringBuilder.append(s"${twoDigitsInWords(digits.slice(numDigits - 8, numDigits - 6))} $MILLION ")
-    } else if (digits.size >= 7) {
-      stringBuilder.append(s"${oneDigitsInWords(digits(numDigits - 7))} $MILLION ")
-    }
+      val digits = extractDigits(number)
+      val numDigits = digits.size
 
-    if (digits.size >= 6) {
-      stringBuilder.append(s"${threeDigitsInWords(digits.slice(numDigits - 6, numDigits - 3))} $THOUSAND ")
-    } else if (digits.size >= 5) {
-      stringBuilder.append(s"${twoDigitsInWords(digits.slice(numDigits - 5, numDigits - 3))} $THOUSAND ")
-    } else if (digits.size >= 4) {
-      stringBuilder.append(s"${oneDigitsInWords(digits(numDigits - 4))} $THOUSAND ")
-    }
+      if (numDigits == 10)
+        stringBuilder.append(s"${oneDigitInWords(digits(0))} $BILLION ")
 
-    if (digits.size >= 3) {
-      stringBuilder.append(s"${threeDigitsInWords(digits.slice(numDigits - 3, numDigits))}")
-    } else if (digits.size >= 2) {
-      stringBuilder.append(s"${twoDigitsInWords(digits.slice(numDigits - 2, numDigits))}")
-    } else if (digits.size >= 1) {
-      stringBuilder.append(s"${oneDigitsInWords(digits(numDigits - 1))}")
+      if (digits.size >= 9) {
+        stringBuilder.append(s"${threeDigitsInWords(digits.slice(numDigits - 9, numDigits - 6))} $MILLION ")
+      } else if (digits.size >= 8) {
+        stringBuilder.append(s"${twoDigitsInWords(digits.slice(numDigits - 8, numDigits - 6))} $MILLION ")
+      } else if (digits.size >= 7) {
+        stringBuilder.append(s"${oneDigitInWords(digits(numDigits - 7))} $MILLION ")
+      }
+
+      if (digits.size >= 6) {
+        stringBuilder.append(s"${threeDigitsInWords(digits.slice(numDigits - 6, numDigits - 3))} $THOUSAND ")
+      } else if (digits.size >= 5) {
+        stringBuilder.append(s"${twoDigitsInWords(digits.slice(numDigits - 5, numDigits - 3))} $THOUSAND ")
+      } else if (digits.size >= 4) {
+        stringBuilder.append(s"${oneDigitInWords(digits(numDigits - 4))} $THOUSAND ")
+      }
+
+      if (digits.size >= 3) {
+        stringBuilder.append(s"${threeDigitsInWords(digits.slice(numDigits - 3, numDigits))}")
+      } else if (digits.size >= 2) {
+        stringBuilder.append(s"${twoDigitsInWords(digits.slice(numDigits - 2, numDigits))}")
+      } else if (digits.size >= 1) {
+        stringBuilder.append(s"${oneDigitInWords(digits(numDigits - 1))}")
+      }
     }
 
     stringBuilder.toString()
